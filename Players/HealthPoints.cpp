@@ -80,5 +80,9 @@ std::ostream& operator<<(std::ostream& os, const HealthPoints& h)
     return os;
 }
 
+int HealthPoints::getHP() const
+{
+    return m_healthPoints;
+}
 
 

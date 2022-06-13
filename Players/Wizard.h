@@ -10,7 +10,7 @@
 class Wizard : public Player{
     Wizard(string name);
     void heal(int hp) override;
-
+    void printPlayerInfo(ostream& os) const override;
 };
 
 

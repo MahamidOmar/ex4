@@ -11,6 +11,8 @@ class Rouge : public Player{
 public:
     Rouge(string name);
     void addCoins(int coins) override;
+    void printPlayerInfo(ostream& os) const override;
+
 };
 
 

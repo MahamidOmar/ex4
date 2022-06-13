@@ -79,4 +79,10 @@ int Player::getAttackStrength()const
     return m_level + m_force;
 }
 
+ostream& operator<<(ostream& os, const Player& player)
+{
+    player.printPlayerInfo(os);
+    return os;
+}
+
 

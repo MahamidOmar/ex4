@@ -59,6 +59,7 @@ public:
      */
     friend std::ostream& operator<<(std::ostream& os, const HealthPoints& h);
 
+    int getHP() const;
 
 private:
     int m_healthPoints;

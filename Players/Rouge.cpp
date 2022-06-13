@@ -12,3 +12,10 @@ void Rouge::addCoins(int coins)
     }
     this->m_coins += (2 * coins);
 }
+
+
+void Rouge::printPlayerInfo(ostream& os) const
+{
+    printPlayerDetails(os, m_name, "Rouge", m_level, m_force, m_HP.getHP(), m_coins);
+}
+

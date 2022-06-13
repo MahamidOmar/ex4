@@ -12,6 +12,7 @@
 #include "utilities.h"
 #include "HealthPoints.h"
 using std::string;
+using std::ostream ;
 
 class Player
 {
@@ -42,6 +43,9 @@ public:
 
     virtual int getAttackStrength()const;
 
+    virtual void printPlayerInfo(ostream& os) const = 0;
+
+    friend ostream& operator<<(ostream& os, const Player& player);
 
 protected:
 
