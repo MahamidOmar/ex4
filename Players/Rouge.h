@@ -4,10 +4,13 @@
 
 #ifndef EX4_ROUGE_H
 #define EX4_ROUGE_H
+#include "Player.h"
+#include <string>
 
-
-class Rouge {
-
+class Rouge : public Player{
+public:
+    Rouge(string name);
+    void addCoins(int coins) override;
 };
 
 

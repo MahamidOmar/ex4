@@ -4,9 +4,12 @@
 
 #ifndef EX4_WIZARD_H
 #define EX4_WIZARD_H
+#include "Player.h"
+#include <string>
 
-
-class Wizard {
+class Wizard : public Player{
+    Wizard(string name);
+    void heal(int hp) override;
 
 };
 

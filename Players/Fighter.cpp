@@ -1,5 +1,9 @@
-//
-// Created by omarz on 13/06/2022.
-//
 
 #include "Fighter.h"
+
+Fighter::Fighter(string name): Player(name){}
+
+int Fighter::getAttackStrength()const
+{
+    return 2 * m_force + m_level;
+}

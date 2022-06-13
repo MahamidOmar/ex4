@@ -4,10 +4,12 @@
 
 #ifndef EX4_FIGHTER_H
 #define EX4_FIGHTER_H
+#include "Player.h"
+#include <string>
 
-
-class Fighter {
-
+class Fighter :public Player{
+    Fighter(string name);
+    int getAttackStrength()const override;
 };
 
 
