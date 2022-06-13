@@ -8,6 +8,7 @@
 #include <string>
 
 class Fighter :public Player{
+public:
     Fighter(const string& name);
     int getAttackStrength()const override;
     void printPlayerInfo(ostream& os) const override;

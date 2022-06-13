@@ -8,6 +8,7 @@
 #include <string>
 
 class Wizard : public Player{
+public:
     Wizard(string name);
     void heal(int hp) override;
     void printPlayerInfo(ostream& os) const override;

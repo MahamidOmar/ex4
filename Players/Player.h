@@ -41,7 +41,7 @@ public:
 
     bool pay(int coins);
 
-    virtual int getAttackStrength()const;
+    virtual int getAttackStrength() const;
 
     virtual void printPlayerInfo(ostream& os) const = 0;
 
