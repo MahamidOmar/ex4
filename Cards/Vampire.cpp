@@ -3,3 +3,12 @@
 //
 
 #include "Vampire.h"
+
+Vampire::Vampire(): Battle("Vampire", 2, 10, 10){}
+bool Vampire::applyEncounter(shared_ptr<Player> player) const
+{
+    if(!Battle::applyEncounter(player))
+    {
+        player->damageForce();
+    }
+}

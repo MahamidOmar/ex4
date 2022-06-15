@@ -4,10 +4,15 @@
 
 #ifndef EX4_DRAGON_H
 #define EX4_DRAGON_H
+#include "Card.h"
+#include "Battle.h"
+#include <iostream>
+#include <string>
+using std::string;
 
-
-class Dragon {
-
+class Dragon : public Battle{
+public:
+    Dragon();
 };
 
 

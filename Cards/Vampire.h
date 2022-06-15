@@ -5,9 +5,12 @@
 #ifndef EX4_VAMPIRE_H
 #define EX4_VAMPIRE_H
 
+#include "Battle.h"
 
-class Vampire {
-
+class Vampire : public Battle{
+public:
+    Vampire();
+    bool applyEncounter(shared_ptr<Player> player) const override;
 };
 
 
