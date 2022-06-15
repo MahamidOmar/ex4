@@ -7,10 +7,12 @@
 
 #include <iostream>
 #include <string>
+#include <memory>
 #include "Player.h"
 #include "utilities.h"
 using std::ostream;
 using std::string;
+using std::shared_ptr;
 
 class Card {
 public:
@@ -29,8 +31,7 @@ public:
      * @return
      *      void
     */
-    virtual void applyEncounter(Player& player) const = 0;
-
+    virtual bool applyEncounter(shared_ptr<Player> player) const = 0;
 
     /*
      * Prints the card info:

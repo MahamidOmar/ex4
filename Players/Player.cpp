@@ -46,6 +46,10 @@ void Player::damage(int damage)
     m_HP -= damage;
 }
 
+void Player::damageForce()
+{
+    this->m_force--;
+}
 
 ////maybe add || m_level == 10
 bool Player::isKnockedOut() const

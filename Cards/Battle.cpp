@@ -7,10 +7,20 @@
 Battle::Battle(string name, int loot, int force, int damage): Card(name), m_loot(loot), m_force(force), m_damage(damage)
 {}
 
-////get param shared_ptr
-void Battle::applyEncounter(Player& player) const
+//get param shared_ptr
+bool Battle::applyEncounter(shared_ptr<Player> player) const
 {
-
+    if(player->getAttackStrength() < m_force)
+    {
+        player->damage(m_damage);
+        return false;
+    }
+    else
+    {
+        player->levelUp();
+        player->addCoins(m_loot);
+        return true;
+    }
 }
 
 void Battle::printInfo(ostream& os) const

@@ -37,6 +37,8 @@ public:
 
     bool isKnockedOut() const;
 
+    void damageForce();
+
     virtual void addCoins(int coins);
 
     bool pay(int coins);

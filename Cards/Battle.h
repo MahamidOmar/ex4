@@ -11,7 +11,7 @@
 class Battle : public Card{
 public:
     Battle(string name, int loot, int force, int damage);
-    void applyEncounter(Player& player) const override;
+    bool applyEncounter(shared_ptr<Player> player) const override;
     void printInfo(ostream& os) const override;
 
 protected:
