@@ -91,4 +91,13 @@ ostream& operator<<(ostream& os, const Player& player)
     return os;
 }
 
+string Player::getName()const
+{
+    return m_name;
+}
+
+int Player::getCoins()const
+{
+    return m_coins;
+}
 

@@ -5,8 +5,12 @@
 #ifndef EX4_BARFIGHT_H
 #define EX4_BARFIGHT_H
 
+#include "Card.h"
 
-class Barfight {
+class Barfight : public Card{
+public:
+    Barfight();
+    bool applyEncounter(std::shared_ptr<Player> player) const override;
 
 };
 

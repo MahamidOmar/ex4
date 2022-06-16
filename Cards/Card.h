@@ -10,9 +10,6 @@
 #include <memory>
 #include "Player.h"
 #include "utilities.h"
-using std::ostream;
-using std::string;
-using std::shared_ptr;
 
 class Card {
 public:
@@ -21,7 +18,7 @@ public:
      * @return
      *      A new instance of Card.
     */
-    Card(string name);
+    Card(std::string name);
 
 
     /*
@@ -31,7 +28,7 @@ public:
      * @return
      *      void
     */
-    virtual bool applyEncounter(shared_ptr<Player> player) const = 0;
+    virtual bool applyEncounter(std::shared_ptr<Player> player) const = 0;
 
     /*
      * Prints the card info:
@@ -39,9 +36,9 @@ public:
      * @return
      *      void
     */
-    virtual void printInfo(ostream& os) const;
+    virtual void printInfo(std::ostream& os) const;
 
-    friend ostream& operator<<(ostream& os, const Card& card);
+    friend std::ostream& operator<<(std::ostream& os, const Card& card);
 
     /*
      * Here we are explicitly telling the compiler to use the default methods
@@ -52,7 +49,7 @@ public:
 
 
 protected:
-    string m_name;
+    std::string m_name;
 
 };
 

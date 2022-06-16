@@ -5,8 +5,12 @@
 #ifndef EX4_FAIRY_H
 #define EX4_FAIRY_H
 
+#include "Card.h"
 
-class Fairy {
+class Fairy : public Card{
+public:
+    Fairy();
+    bool applyEncounter(std::shared_ptr<Player> player) const override;
 
 };
 

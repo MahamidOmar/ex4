@@ -5,9 +5,12 @@
 #ifndef EX4_PITFALL_H
 #define EX4_PITFALL_H
 
+#include "Card.h"
 
-class Pitfall {
-
+class Pitfall : public Card{
+public:
+    Pitfall();
+    bool applyEncounter(std::shared_ptr<Player> player) const override;
 };
 
 

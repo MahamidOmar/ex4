@@ -8,7 +8,6 @@
 #include "Battle.h"
 #include <iostream>
 #include <string>
-using std::string;
 
 class Dragon : public Battle{
 public:

@@ -7,13 +7,13 @@
 Card::Card(string name): m_name(name)
 {}
 
-void Card::printInfo(ostream& os) const
+void Card::printInfo(std::ostream& os) const
 {
     printCardDetails(os, m_name);
     printEndOfCardDetails(os);
 }
 
-ostream& operator<<(ostream& os, const Card& card)
+std::ostream& operator<<(std::ostream& os, const Card& card)
 {
     card.printInfo(os);
     return os;

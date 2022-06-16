@@ -5,8 +5,12 @@
 #ifndef EX4_TREASURE_H
 #define EX4_TREASURE_H
 
+#include "Card.h"
 
-class Treasure {
+class Treasure : public Card {
+public:
+    Treasure();
+    bool applyEncounter(std::shared_ptr<Player> player) const override;
 
 };
 

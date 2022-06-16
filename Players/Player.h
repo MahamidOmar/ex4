@@ -47,6 +47,10 @@ public:
 
     virtual void printPlayerInfo(ostream& os) const = 0;
 
+    string getName()const;
+
+    int getCoins()const;
+
     friend ostream& operator<<(ostream& os, const Player& player);
 
 protected:
