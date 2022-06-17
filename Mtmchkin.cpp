@@ -109,21 +109,26 @@ void fillPlayersQueue(std::deque<std::shared_ptr<Player>>& players)
         int toSlice = current_player.find(" ");
         std::string player_name = current_player.substr(0, toSlice);
         std::string player_class = current_player.substr(toSlice + 1);
-        while(!checkPlayerInvalid(player_name))
+        bool flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
+        while(!flag)
         {
-            printInvalidName();
-            std::cin >> current_player;
-            toSlice = current_player.find(" ");
-            player_name = current_player.substr(0, toSlice);
-            player_class = current_player.substr(toSlice + 1);
-        }
-        while(!checkClassInvalid(player_class))
-        {
-            printInvalidClass();
-            std::cin >> current_player;
-            toSlice = current_player.find(" ");
-            player_name = current_player.substr(0, toSlice);
-            player_class = current_player.substr(toSlice + 1);
+            if(!checkPlayerInvalid(player_name))
+            {
+                printInvalidName();
+                std::cin >> current_player;
+                toSlice = current_player.find(" ");
+                player_name = current_player.substr(0, toSlice);
+                player_class = current_player.substr(toSlice + 1);
+            }
+            else
+            {
+                printInvalidClass();
+                std::cin >> current_player;
+                toSlice = current_player.find(" ");
+                player_name = current_player.substr(0, toSlice);
+                player_class = current_player.substr(toSlice + 1);
+            }
+            flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
         }
         players.push_back(std::shared_ptr<Player>(getPlayerType(player_class, player_name)));
     }
@@ -158,7 +163,6 @@ Mtmchkin::Mtmchkin(const std::string fileName): m_rounds(0)
 
 void Mtmchkin::playRound()
 {}
-
 
 void Mtmchkin::printLeaderBoard() const
 {}
