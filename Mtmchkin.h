@@ -9,8 +9,9 @@
 #include <fstream>
 
 #include "Exception.h"
-#include "Player.h"
+
 #include "Card.h"
+#include "Battle.h"
 #include "Barfight.h"
 #include "Dragon.h"
 #include "Fairy.h"
@@ -20,6 +21,7 @@
 #include "Treasure.h"
 #include "Vampire.h"
 
+#include "Player.h"
 #include "Fighter.h"
 #include "Wizard.h"
 #include "Rouge.h"
@@ -76,8 +78,12 @@ private:
     std::map<int, std::shared_ptr<Player>> m_knockedPlayers;
 
     std::deque<std::shared_ptr<Player>>::iterator m_currentPlayer;
+    std::deque<std::shared_ptr<Card>>::iterator m_currentCard;
 
+    int m_numOfPlayers;
     int m_rounds;
+    int* m_rankings;
+
 };
 
 

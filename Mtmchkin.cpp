@@ -88,11 +88,14 @@ bool checkClassInvalid(const std::string& name)
     return false;
 }
 
-void fillPlayersQueue(std::deque<std::shared_ptr<Player>>& players)
+void cutStrings(std::string& player, int toSlice ,std::string& player_name, std::string& player_class)
 {
-    int size;
-    printStartGameMessage();
-    printEnterTeamSizeMessage();
+    player_name = player.substr(0, toSlice);
+    player_class = player.substr(toSlice + 1);
+}
+
+void readSize(int& size)
+{
     std::cin >> size;
     while(size < 2 || size > 6)
     {
@@ -100,6 +103,14 @@ void fillPlayersQueue(std::deque<std::shared_ptr<Player>>& players)
         printEnterTeamSizeMessage();
         std::cin >> size;
     }
+}
+
+int fillPlayersQueue(std::deque<std::shared_ptr<Player>>& players)
+{
+    int size;
+    printStartGameMessage();
+    printEnterTeamSizeMessage();
+    readSize(size);
     for(int i = 0 ; i < size ; i++)
     {
         printInsertPlayerMessage();
@@ -107,8 +118,11 @@ void fillPlayersQueue(std::deque<std::shared_ptr<Player>>& players)
         std::string current_player;
         std::cin >> current_player;
         int toSlice = current_player.find(" ");
-        std::string player_name = current_player.substr(0, toSlice);
-        std::string player_class = current_player.substr(toSlice + 1);
+//        std::string player_name = current_player.substr(0, toSlice);
+//        std::string player_class = current_player.substr(toSlice + 1);
+        std::string player_name;
+        std::string player_class;
+        cutStrings(current_player, toSlice, player_name, player_class);
         bool flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
         while(!flag)
         {
@@ -117,31 +131,34 @@ void fillPlayersQueue(std::deque<std::shared_ptr<Player>>& players)
                 printInvalidName();
                 std::cin >> current_player;
                 toSlice = current_player.find(" ");
-                player_name = current_player.substr(0, toSlice);
-                player_class = current_player.substr(toSlice + 1);
+                cutStrings(current_player, toSlice, player_name, player_class);
+//                player_name = current_player.substr(0, toSlice);
+//                player_class = current_player.substr(toSlice + 1);
             }
             else
             {
                 printInvalidClass();
                 std::cin >> current_player;
                 toSlice = current_player.find(" ");
-                player_name = current_player.substr(0, toSlice);
-                player_class = current_player.substr(toSlice + 1);
+                cutStrings(current_player, toSlice, player_name, player_class);
+//                player_name = current_player.substr(0, toSlice);
+//                player_class = current_player.substr(toSlice + 1);
             }
             flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
         }
         players.push_back(std::shared_ptr<Player>(getPlayerType(player_class, player_name)));
+        return size;
     }
 }
 
 ////end of help functions
 
-Mtmchkin::Mtmchkin(const std::string fileName): m_rounds(0)
+Mtmchkin::Mtmchkin(const std::string fileName):  m_numOfPlayers(0), m_rounds(1)
 {
     std::ifstream file(fileName);
     if(!file)
     {
-        ////throw exception DeckFileNotFound
+        throw  DeckFileNotFound();
     }
     std::string currentCard;
     int line = 1;
@@ -149,27 +166,69 @@ Mtmchkin::Mtmchkin(const std::string fileName): m_rounds(0)
     {
         if(!checkCardInvalid(currentCard))
         {
-            ////throw exception DeckFileFormatError(line)
+            throw  DeckFileFormatError(line);
         }
         this->m_cards.push_back(std::shared_ptr<Card>(getCardType(currentCard)));
         ++line;
     }
     if(line < 6)
     {
-        ////throw exception DeckFileInvalidSize
+        throw  DeckFileInvalidSize();
     }
-    fillPlayersQueue(this->m_players);
+    m_numOfPlayers = fillPlayersQueue(this->m_players);
+    m_rankings = new int[m_numOfPlayers + 1];
+    for(int i = 1 ; i <= m_numOfPlayers ; ++i)
+    {
+        m_rankings[i] = 0;
+    }
 }
 
 void Mtmchkin::playRound()
-{}
+{
+
+    ////isGameOver
+}
 
 void Mtmchkin::printLeaderBoard() const
-{}
+{
+    printLeaderBoardStartMessage();
+
+
+    bool flag = true;
+    printLeaderBoardStartMessage();
+    for(int i = 1 ; i <= m_numOfPlayers ; ++i)
+    {
+
+        std::map<int, std::shared_ptr<Player>>::const_iterator it = m_knockedPlayers.find(i);
+        if(it == m_knockedPlayers.end())
+        {
+            flag = false;
+            break;
+        }
+        else
+        {
+            Player& tmp = *(it->second);
+            printPlayerLeaderBoard(it->first, tmp);
+        }
+    }
+
+}
 
 bool Mtmchkin::isGameOver() const
-{}
+{
+    for(std::shared_ptr<Player> player : m_players)
+    {
+        if(!(player->isKnockedOut()))
+        {
+            return false;
+        }
+    }
+    printGameEndMessage();
+    return true;
+}
 
 int Mtmchkin::getNumberOfRounds() const
-{}
+{
+    return m_rounds;
+}
 

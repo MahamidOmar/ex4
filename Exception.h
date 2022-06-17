@@ -13,11 +13,11 @@ public:
 
 class DeckFileFormatError : public std::exception
 {
-private:
-    int m_line;
 public:
     DeckFileFormatError(int line);
     const char* what() const noexcept override;
+private:
+    int m_line;
 };
 
 class DeckFileInvalidSize : public std::exception
