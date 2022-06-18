@@ -5,9 +5,9 @@
 #include "Treasure.h"
 
 Treasure::Treasure(): Card("Treasure"){}
-bool Treasure::applyEncounter(std::shared_ptr<Player> player) const
+bool Treasure::applyEncounter(Player& player) const
 {
-    player->addCoins(10);
+    player.addCoins(10);
     return true;
 }
 

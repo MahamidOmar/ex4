@@ -7,5 +7,3 @@
 
 Dragon::Dragon() : Battle("Dragon", 1000, 25, 100){}
 
-
-

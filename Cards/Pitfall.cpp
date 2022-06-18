@@ -8,17 +8,16 @@
 #include <memory>
 
 Pitfall::Pitfall(): Card("Pitfall"){}
-bool Pitfall::applyEncounter(std::shared_ptr<Player> player) const
-//bool Pitfall::applyEncounter(Player* player) const
+bool Pitfall::applyEncounter(Player& player) const
 {
-    std::shared_ptr<Rouge> tmp = std::dynamic_pointer_cast<Rouge>(player);
-    if(tmp != nullptr)
+    try
+    {
+        Rouge& tmp = dynamic_cast<Rouge&>(player);
+        tmp.damage(10);
+        return true;
+    }
+    catch (const std::bad_cast&)
     {
         return false;
-    }
-    else
-    {
-        player->damage(10);
-        return true;
     }
 }

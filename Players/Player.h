@@ -17,7 +17,7 @@ using std::ostream ;
 class Player
 {
 public:
-    Player(string name);
+    Player(const string& name);
     Player(const Player& player) = default;
     Player& operator=(const Player& player) = default;
     ~Player() = default;

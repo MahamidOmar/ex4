@@ -153,7 +153,7 @@ int fillPlayersQueue(std::deque<std::shared_ptr<Player>>& players)
 
 ////end of help functions
 
-Mtmchkin::Mtmchkin(const std::string fileName):  m_numOfPlayers(0), m_rounds(1)
+Mtmchkin::Mtmchkin(const std::string fileName):  m_numOfPlayers(0), m_rounds(1), m_toAddFirst(0), m_toAddLast(0)
 {
     std::ifstream file(fileName);
     if(!file)
@@ -176,11 +176,26 @@ Mtmchkin::Mtmchkin(const std::string fileName):  m_numOfPlayers(0), m_rounds(1)
         throw  DeckFileInvalidSize();
     }
     m_numOfPlayers = fillPlayersQueue(this->m_players);
-    m_rankings = new int[m_numOfPlayers + 1];
-    for(int i = 1 ; i <= m_numOfPlayers ; ++i)
+}
+
+std::deque<std::shared_ptr<Player>>::const_iterator Mtmchkin::getFirstPosition() const
+{
+    std::deque<std::shared_ptr<Player>>::const_iterator position = this->m_players.begin();
+    for(int i = 1 ; i < m_toAddFirst ; ++i)
     {
-        m_rankings[i] = 0;
+        ++position;
     }
+    return position;
+}
+
+std::deque<std::shared_ptr<Player>>::const_iterator Mtmchkin::getLastPosition() const
+{
+    std::deque<std::shared_ptr<Player>>::const_iterator position = this->m_players.end();
+    for(int i = 1 ; i <= m_toAddLast ; ++i)
+    {
+        --position;
+    }
+    return position;
 }
 
 void Mtmchkin::playRound()
@@ -192,26 +207,15 @@ void Mtmchkin::playRound()
 void Mtmchkin::printLeaderBoard() const
 {
     printLeaderBoardStartMessage();
+    int rank = 1;
+    std::deque<std::shared_ptr<Player>>::const_iterator toPrintFirst = getFirstPosition();
+    std::deque<std::shared_ptr<Player>>::const_iterator toPrintLast = getLastPosition();
 
+    for (; toPrintFirst != m_players.begin() ; --toPrintFirst) {
 
-    bool flag = true;
-    printLeaderBoardStartMessage();
-    for(int i = 1 ; i <= m_numOfPlayers ; ++i)
-    {
-
-        std::map<int, std::shared_ptr<Player>>::const_iterator it = m_knockedPlayers.find(i);
-        if(it == m_knockedPlayers.end())
-        {
-            flag = false;
-            break;
-        }
-        else
-        {
-            Player& tmp = *(it->second);
-            printPlayerLeaderBoard(it->first, tmp);
-        }
     }
-
+    std::shared_ptr<Player> player = *(toPrintFirst);
+    printPlayerLeaderBoard(rank, *player);
 }
 
 bool Mtmchkin::isGameOver() const

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Player.h"
 
-Player::Player(string name):
+Player::Player(const string& name):
         m_name(name), m_level(BasicLevel), m_force(BasicForce) , m_coins(BasicCoins)
 {}
 

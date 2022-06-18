@@ -1,7 +1,7 @@
 
 #include "Rouge.h"
 
-Rouge::Rouge(string name): Player(name)
+Rouge::Rouge(const string& name): Player(name)
 {}
 
 void Rouge::addCoins(int coins)

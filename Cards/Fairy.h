@@ -10,7 +10,7 @@
 class Fairy : public Card{
 public:
     Fairy();
-    bool applyEncounter(std::shared_ptr<Player> player) const override;
+    bool applyEncounter(Player& player) const override;
 
 };
 

@@ -1,7 +1,7 @@
 
 #include "Wizard.h"
 
-Wizard::Wizard(string name): Player(name)
+Wizard::Wizard(const string& name): Player(name)
 {}
 
 void Wizard::heal(int hp)

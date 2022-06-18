@@ -5,12 +5,12 @@
 #include "Merchant.h"
 
 Merchant::Merchant(): Card("Merchant") {}
-bool Merchant::applyEncounter(std::shared_ptr<Player> player) const
+bool Merchant::applyEncounter(Player& player) const
 {
     int toBuy;
     bool flag = true;
     int coins = 0;
-    printMerchantInitialMessageForInteractiveEncounter(std::cout, player->getName(), player->getCoins());
+    printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getName(), player.getCoins());
     std::cin >> toBuy;
     if(toBuy != 0 && toBuy != 1 && toBuy != 2)
     {
@@ -27,10 +27,10 @@ bool Merchant::applyEncounter(std::shared_ptr<Player> player) const
     }
     if(toBuy == 1)
     {
-        if(player->getCoins() >= 5)
+        if(player.getCoins() >= 5)
         {
-            player->heal(1);
-            player->pay(5);
+            player.heal(1);
+            player.pay(5);
             coins = 5;
         }
         else
@@ -40,10 +40,10 @@ bool Merchant::applyEncounter(std::shared_ptr<Player> player) const
     }
     if(toBuy == 2)
     {
-        if(player->getCoins() >= 10)
+        if(player.getCoins() >= 10)
         {
-            player->buff(1);
-            player->pay(10);
+            player.buff(1);
+            player.pay(10);
             coins = 10;
         }
         else
@@ -51,5 +51,5 @@ bool Merchant::applyEncounter(std::shared_ptr<Player> player) const
             printMerchantInsufficientCoins(std::cout);
         }
     }
-    printMerchantSummary(std::cout, player->getName(), toBuy, coins);
+    printMerchantSummary(std::cout, player.getName(), toBuy, coins);
 }

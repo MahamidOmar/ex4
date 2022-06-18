@@ -6,15 +6,15 @@
 #include "Players/Wizard.h"
 
 Fairy::Fairy(): Card("Fairy"){}
-bool Fairy::applyEncounter(std::shared_ptr<Player> player) const
+bool Fairy::applyEncounter(Player& player) const
 {
-    std::shared_ptr<Wizard> tmp = std::dynamic_pointer_cast<Wizard>(player);
-    if(tmp != nullptr)
+    try
     {
-        player->heal(10);
+        Wizard& tmp = dynamic_cast<Wizard&>(player);
+        tmp.heal(10);
         return true;
     }
-    else
+    catch (const std::bad_cast&)
     {
         return false;
     }

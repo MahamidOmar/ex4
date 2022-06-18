@@ -10,7 +10,7 @@
 class Vampire : public Battle{
 public:
     Vampire();
-    bool applyEncounter(std::shared_ptr<Player> player) const override;
+    bool applyEncounter(Player& player) const override;
 };
 
 

@@ -10,7 +10,7 @@
 class Merchant : public Card{
 public:
     Merchant();
-    bool applyEncounter(std::shared_ptr<Player> player) const override;
+    bool applyEncounter(Player& player) const override;
 };
 
 

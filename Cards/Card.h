@@ -28,7 +28,7 @@ public:
      * @return
      *      void
     */
-    virtual bool applyEncounter(std::shared_ptr<Player> player) const = 0;
+    virtual bool applyEncounter(Player& player) const = 0;
 
     /*
      * Prints the card info:

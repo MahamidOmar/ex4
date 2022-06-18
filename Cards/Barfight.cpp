@@ -6,17 +6,17 @@
 #include "Players/Fighter.h"
 
 Barfight::Barfight(): Card("Barfight"){}
-bool Barfight::applyEncounter(std::shared_ptr<Player> player) const
+bool Barfight::applyEncounter(Player& player) const
 {
-    std::shared_ptr<Fighter> tmp = std::dynamic_pointer_cast<Fighter>(player);
-    if(tmp != nullptr)
+    try
+    {
+        Fighter& tmp = dynamic_cast<Fighter&>(player);
+        tmp.damage(10);
+        return true;
+    }
+    catch (const std::bad_cast&)
     {
         return false;
-    }
-    else
-    {
-        player->damage(10);
-        return true;
     }
 }
 

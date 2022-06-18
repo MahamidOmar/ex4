@@ -10,7 +10,7 @@
 class Pitfall : public Card{
 public:
     Pitfall();
-    bool applyEncounter(std::shared_ptr<Player> player) const override;
+    bool applyEncounter(Player& player) const override;
 };
 
 

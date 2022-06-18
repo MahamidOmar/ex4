@@ -10,7 +10,7 @@
 class Treasure : public Card {
 public:
     Treasure();
-    bool applyEncounter(std::shared_ptr<Player> player) const override;
+    bool applyEncounter(Player& player) const override;
 
 };
 

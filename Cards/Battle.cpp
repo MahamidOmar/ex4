@@ -8,19 +8,19 @@ Battle::Battle(string name, int loot, int force, int damage): Card(name), m_loot
 {}
 
 //get param std::shared_ptr
-bool Battle::applyEncounter(std::shared_ptr<Player> player) const
+bool Battle::applyEncounter(Player& player) const
 {
-    if(player->getAttackStrength() < m_force)
+    if(player.getAttackStrength() < m_force)
     {
-        player->damage(m_damage);
-        printLossBattle(player->getName(), m_name);
+        player.damage(m_damage);
+        printLossBattle(player.getName(), m_name);
         return false;
     }
     else
     {
-        player->levelUp();
-        player->addCoins(m_loot);
-        printWinBattle(player->getName(), m_name);
+        player.levelUp();
+        player.addCoins(m_loot);
+        printWinBattle(player.getName(), m_name);
         return true;
     }
 }
