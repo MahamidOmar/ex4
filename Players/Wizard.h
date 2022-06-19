@@ -12,6 +12,7 @@ public:
     Wizard(const string& name);
     void heal(int hp) override;
     void printPlayerInfo(ostream& os) const override;
+    std::unique_ptr<Player> clone() const override;
 };
 
 

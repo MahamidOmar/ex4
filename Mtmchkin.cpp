@@ -31,35 +31,35 @@ bool checkCardInvalid(const std::string& name)
     }
 }
 
-std::shared_ptr<Card> getCardType(const std::string& name)
+std::unique_ptr<Card> getCardType(const std::string& name)
 {
     if(name.compare("Barfight") == 0)
-        return std::shared_ptr<Card>(new Barfight());
+        return std::unique_ptr<Card>(new Barfight());
     if(name.compare("Dragon") == 0)
-        return std::shared_ptr<Card>(new Dragon());
+        return std::unique_ptr<Card>(new Dragon());
     if(name.compare("Fairy") == 0)
-        return std::shared_ptr<Card>(new Fairy());
+        return std::unique_ptr<Card>(new Fairy());
     if(name.compare("Goblin") == 0)
-        return std::shared_ptr<Card>(new Goblin());
+        return std::unique_ptr<Card>(new Goblin());
     if(name.compare("Merchant") == 0)
-        return std::shared_ptr<Card>(new Merchant());
+        return std::unique_ptr<Card>(new Merchant());
     if(name.compare("Pitfall") == 0)
-        return std::shared_ptr<Card>(new Pitfall());
+        return std::unique_ptr<Card>(new Pitfall());
     if(name.compare("Treasure") == 0)
-        return std::shared_ptr<Card>(new Treasure());
+        return std::unique_ptr<Card>(new Treasure());
     if(name.compare("Vampire") == 0)
-        return std::shared_ptr<Card>(new Vampire());
+        return std::unique_ptr<Card>(new Vampire());
 
     return nullptr;
 }
-std::shared_ptr<Player> getPlayerType(const std::string& player_class, const std::string& name)
+std::unique_ptr<Player> getPlayerType(const std::string& player_class, const std::string& name)
 {
     if(player_class.compare("Fighter") == 0)
-        return std::shared_ptr<Player>(new Fighter(name));
+        return std::unique_ptr<Player>(new Fighter(name));
     if(player_class.compare("Wizard") == 0)
-        return std::shared_ptr<Player>(new Wizard(name));
+        return std::unique_ptr<Player>(new Wizard(name));
     if(player_class.compare("Rouge") == 0)
-        return std::shared_ptr<Player>(new Rouge(name));
+        return std::unique_ptr<Player>(new Rouge(name));
     return nullptr;
 }
 
@@ -105,7 +105,7 @@ void readSize(int& size)
     }
 }
 
-int fillPlayersQueue(std::deque<std::shared_ptr<Player>>& players)
+int fillPlayersQueue(std::deque<std::unique_ptr<Player>>& players)
 {
     int size;
     printStartGameMessage();
@@ -146,7 +146,7 @@ int fillPlayersQueue(std::deque<std::shared_ptr<Player>>& players)
             }
             flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
         }
-        players.push_back(std::shared_ptr<Player>(getPlayerType(player_class, player_name)));
+        players.push_back(std::unique_ptr<Player>(getPlayerType(player_class, player_name)));
         return size;
     }
 }
@@ -168,7 +168,7 @@ Mtmchkin::Mtmchkin(const std::string fileName):  m_numOfPlayers(0), m_rounds(1),
         {
             throw  DeckFileFormatError(line);
         }
-        this->m_cards.push_back(std::shared_ptr<Card>(getCardType(currentCard)));
+        this->m_cards.push_back(std::unique_ptr<Card>(getCardType(currentCard)));
         ++line;
     }
     if(line < 6)
@@ -176,11 +176,13 @@ Mtmchkin::Mtmchkin(const std::string fileName):  m_numOfPlayers(0), m_rounds(1),
         throw  DeckFileInvalidSize();
     }
     m_numOfPlayers = fillPlayersQueue(this->m_players);
+    m_currentPlayer = m_players.begin();
+    m_currentCard = m_cards.begin();
 }
 
-std::deque<std::shared_ptr<Player>>::const_iterator Mtmchkin::getFirstPosition() const
+std::deque<std::unique_ptr<Player>>::const_iterator Mtmchkin::getFirstPosition() const
 {
-    std::deque<std::shared_ptr<Player>>::const_iterator position = this->m_players.begin();
+    std::deque<std::unique_ptr<Player>>::const_iterator position = this->m_players.begin();
     for(int i = 1 ; i < m_toAddFirst ; ++i)
     {
         ++position;
@@ -188,9 +190,9 @@ std::deque<std::shared_ptr<Player>>::const_iterator Mtmchkin::getFirstPosition()
     return position;
 }
 
-std::deque<std::shared_ptr<Player>>::const_iterator Mtmchkin::getLastPosition() const
+std::deque<std::unique_ptr<Player>>::const_iterator Mtmchkin::getLastPosition() const
 {
-    std::deque<std::shared_ptr<Player>>::const_iterator position = this->m_players.end();
+    std::deque<std::unique_ptr<Player>>::const_iterator position = this->m_players.end();
     for(int i = 1 ; i <= m_toAddLast ; ++i)
     {
         --position;
@@ -208,27 +210,35 @@ void Mtmchkin::printLeaderBoard() const
 {
     printLeaderBoardStartMessage();
     int rank = 1;
-    std::deque<std::shared_ptr<Player>>::const_iterator toPrintFirst = getFirstPosition();
-    std::deque<std::shared_ptr<Player>>::const_iterator toPrintLast = getLastPosition();
+    std::deque<std::unique_ptr<Player>>::const_iterator toPrintFirst = getFirstPosition();
+    std::deque<std::unique_ptr<Player>>::const_iterator toPrintLast = getLastPosition();
 
-    for (; toPrintFirst != m_players.begin() ; --toPrintFirst) {
-
-    }
-    std::shared_ptr<Player> player = *(toPrintFirst);
-    printPlayerLeaderBoard(rank, *player);
+//    for (; toPrintFirst != m_players.begin() ; --toPrintFirst) {
+//
+//    }
+    printPlayerLeaderBoard(rank, *(*toPrintFirst));
 }
 
 bool Mtmchkin::isGameOver() const
 {
-    for(std::shared_ptr<Player> player : m_players)
+    for(std::deque<std::unique_ptr<Player>>::const_iterator it = m_players.begin(); it != m_players.end(); ++it)
     {
-        if(!(player->isKnockedOut()))
+        if(!(*it)->isKnockedOut())
         {
             return false;
         }
     }
     printGameEndMessage();
     return true;
+//    for(std::unique_ptr<Player> player : m_players)
+//    {
+//        if(!(player->isKnockedOut()))
+//        {
+//            return false;
+//        }
+//    }
+//    printGameEndMessage();
+//    return true;
 }
 
 int Mtmchkin::getNumberOfRounds() const

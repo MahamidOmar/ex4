@@ -9,7 +9,8 @@
 #include <iostream>
 #include <cstring>
 #include <string>
-#include "utilities.h"
+#include <memory>
+// #include "utilities.h"
 #include "HealthPoints.h"
 using std::string;
 using std::ostream ;
@@ -18,7 +19,7 @@ class Player
 {
 public:
     Player(const string& name);
-    Player(const Player& player) = default;
+//    Player(const Player& player) = default;
     Player& operator=(const Player& player) = default;
     ~Player() = default;
 
@@ -52,6 +53,8 @@ public:
     int getCoins()const;
 
     friend ostream& operator<<(ostream& os, const Player& player);
+
+    virtual std::unique_ptr<Player> clone() const = 0;
 
 protected:
 
