@@ -2,7 +2,7 @@
 #include "HealthPoints.h"
 HealthPoints::HealthPoints(int points): m_healthPoints(points), m_maxHp(points)
 {
-    if(points <= 0)
+    if(points < 0)
     {
         throw HealthPoints::InvalidArgument();
     }
