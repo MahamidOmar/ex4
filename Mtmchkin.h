@@ -11,7 +11,7 @@
 
 #include "Exception.h"
 
-#include "../Cards/Card.h"
+#include "/Cards/Card.h"
 #include "../Cards/Battle.h"
 #include "../Cards/Barfight.h"
 #include "../Cards/Dragon.h"
