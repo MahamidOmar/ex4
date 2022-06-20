@@ -1,6 +1,6 @@
 
 #include "Wizard.h"
-#include "utilities.h"
+#include "../utilities.h"
 
 Wizard::Wizard(const string& name): Player(name)
 {}
