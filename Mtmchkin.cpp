@@ -229,6 +229,7 @@ void Mtmchkin::playRound()
     {
         printLeaderBoard();
     }
+    ++m_rounds;
 }
 
 void Mtmchkin::printLeaderBoard() const
@@ -262,7 +263,7 @@ bool Mtmchkin::isGameOver() const
     {
         return false;
     }
-    printGameEndMessage();
+//    printGameEndMessage();
     return true;
 }
 
