@@ -11,21 +11,21 @@
 
 #include "Exception.h"
 
-#include "Cards/Card.h"
-#include "Cards/Battle.h"
-#include "Cards/Barfight.h"
-#include "Cards/Dragon.h"
-#include "Cards/Fairy.h"
-#include "Cards/Goblin.h"
-#include "Cards/Merchant.h"
-#include "Cards/Pitfall.h"
-#include "Cards/Treasure.h"
-#include "Cards/Vampire.h"
+#include "Card.h"
+#include "Battle.h"
+#include "Barfight.h"
+#include "Dragon.h"
+#include "Fairy.h"
+#include "Goblin.h"
+#include "Merchant.h"
+#include "Pitfall.h"
+#include "Treasure.h"
+#include "Vampire.h"
 
-#include "Players/Player.h"
-#include "Players/Fighter.h"
-#include "Players/Wizard.h"
-#include "Players/Rouge.h"
+#include "Player.h"
+#include "Fighter.h"
+#include "Wizard.h"
+#include "Rouge.h"
 
 class Mtmchkin{
 
