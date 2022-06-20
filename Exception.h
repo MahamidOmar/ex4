@@ -15,8 +15,10 @@ class DeckFileFormatError : public std::exception
 {
 public:
     DeckFileFormatError(int line);
+    ~DeckFileFormatError();
     const char* what() const noexcept override;
 private:
+    std::string* m_errorMessage;
     int m_line;
 };
 
@@ -34,12 +36,18 @@ const char* DeckFileNotFound::what() const noexcept
 }
 
 DeckFileFormatError::DeckFileFormatError(int line) : m_line(line)
-{}
+{
+    m_errorMessage = new std::string ("Deck File Error: File format error in line ");
+    *m_errorMessage += std::to_string(m_line);
+}
 const char* DeckFileFormatError::what() const noexcept
 {
-    std::string message = "Deck File Error: File format error in line ";
-    message += std::to_string(m_line);
-    return message.c_str();
+    return m_errorMessage->c_str();
+}
+
+DeckFileFormatError::~DeckFileFormatError()
+{
+    delete m_errorMessage;
 }
 
 const char* DeckFileInvalidSize::what() const noexcept

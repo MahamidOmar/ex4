@@ -1,5 +1,6 @@
 
 #include "Rouge.h"
+#include "utilities.h"
 
 Rouge::Rouge(const string& name): Player(name)
 {}

@@ -55,7 +55,12 @@ void Player::damageForce()
 ////maybe add || m_level == 10
 bool Player::isKnockedOut() const
 {
-    return m_HP == 0 || m_level == MaxLevel;
+    return m_HP == 0 ;
+}
+
+bool Player::isWinner() const
+{
+    return m_level == MaxLevel;
 }
 
 void Player::addCoins(int coins)

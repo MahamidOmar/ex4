@@ -38,6 +38,8 @@ public:
 
     bool isKnockedOut() const;
 
+    bool isWinner() const;
+
     void damageForce();
 
     virtual void addCoins(int coins);

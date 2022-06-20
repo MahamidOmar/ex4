@@ -74,26 +74,32 @@ public:
     int getNumberOfRounds() const;
 
 private:
-    std::deque<std::unique_ptr<Player>>::const_iterator getFirstPosition() const;
-    std::deque<std::unique_ptr<Player>>::const_iterator getLastPosition() const;
+//    std::deque<std::unique_ptr<Player>>::const_iterator getFirstPosition() const;
+//    std::deque<std::unique_ptr<Player>>::const_iterator getLastPosition() const;
 //    std::deque<std::shared_ptr<Player>>::const_iterator getFirstPosition() const;
 //    std::deque<std::shared_ptr<Player>>::const_iterator getLastPosition() const;
 
 //    std::deque<std::shared_ptr<Player>> m_players;
     std::deque<std::unique_ptr<Player>> m_players;
-    std::deque<std::unique_ptr<Card>> m_cards;
-//    std::deque<std::shared_ptr<Card>> m_cards;
+    std::deque<std::unique_ptr<Player>> m_winners;
+    std::deque<std::unique_ptr<Player>> m_losers;
 
-    std::deque<std::unique_ptr<Player>>::iterator m_currentPlayer;
-//    std::deque<std::shared_ptr<Player>>::iterator m_currentPlayer;
-//    std::deque<std::shared_ptr<Card>>::iterator m_currentCard;
-    std::deque<std::unique_ptr<Card>>::iterator m_currentCard;
+
+    std::deque<std::unique_ptr<Card>> m_cards;
 
     int m_numOfPlayers;
     int m_rounds;
-//    int* m_rankings;
-    int m_toAddFirst;
-    int m_toAddLast;
+
+//    std::deque<std::shared_ptr<Card>> m_cards;
+
+//    std::deque<std::unique_ptr<Player>>::iterator m_currentPlayer;
+//    std::deque<std::shared_ptr<Player>>::iterator m_currentPlayer;
+//    std::deque<std::shared_ptr<Card>>::iterator m_currentCard;
+//    std::deque<std::unique_ptr<Card>>::iterator m_currentCard;
+
+
+//    int m_toAddFirst;
+//    int m_toAddLast;
 };
 
 
