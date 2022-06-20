@@ -5,6 +5,7 @@
 #ifndef EX4_VAMPIRE_H
 #define EX4_VAMPIRE_H
 
+#include "Card.h"
 #include "Battle.h"
 
 class Vampire : public Battle{

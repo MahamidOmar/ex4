@@ -5,6 +5,7 @@
 #ifndef EX4_GOBLIN_H
 #define EX4_GOBLIN_H
 
+#include "Card.h"
 #include "Battle.h"
 
 class Goblin : public Battle{
