@@ -12,10 +12,12 @@ bool Fairy::applyEncounter(Player& player) const
     {
         Wizard& tmp = dynamic_cast<Wizard&>(player);
         tmp.heal(10);
+        printFairyMessage(true);
         return true;
     }
     catch (const std::bad_cast&)
     {
+        printFairyMessage(false);
         return false;
     }
 }

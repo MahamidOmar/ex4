@@ -8,6 +8,7 @@ Treasure::Treasure(): Card("Treasure"){}
 bool Treasure::applyEncounter(Player& player) const
 {
     player.addCoins(10);
+    printTreasureMessage();
     return true;
 }
 

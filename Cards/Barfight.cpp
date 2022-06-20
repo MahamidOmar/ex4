@@ -11,11 +11,13 @@ bool Barfight::applyEncounter(Player& player) const
     try
     {
         Fighter& tmp = dynamic_cast<Fighter&>(player);
-        tmp.damage(10);
+        printBarfightMessage(true);
         return true;
     }
     catch (const std::bad_cast&)
     {
+        player.damage(10);
+        printBarfightMessage(false);
         return false;
     }
 }

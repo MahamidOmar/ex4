@@ -13,11 +13,13 @@ bool Pitfall::applyEncounter(Player& player) const
     try
     {
         Rogue& tmp = dynamic_cast<Rogue&>(player);
-        tmp.damage(10);
+        printPitfallMessage(true);
         return true;
     }
     catch (const std::bad_cast&)
     {
+        player.damage(10);
+        printPitfallMessage(false);
         return false;
     }
 }
