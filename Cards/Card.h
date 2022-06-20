@@ -8,7 +8,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include "Players/Player.h"
+#include "Player.h"
 #include "utilities.h"
 
 
