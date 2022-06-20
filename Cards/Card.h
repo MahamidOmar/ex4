@@ -8,8 +8,8 @@
 #include <iostream>
 #include <string>
 #include <memory>
-#include "Player.h"
-#include "utilities.h"
+#include "../Players/Player.h"
+#include "../utilities.h"
 
 
 class Card {
