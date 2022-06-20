@@ -3,7 +3,7 @@
 #include "../utilities.h"
 
 Player::Player(const string& name):
-        m_name(name), m_level(BasicLevel), m_force(BasicForce) , m_coins(BasicCoins)
+        m_name(name), m_level(BasicLevel), m_force(BasicForce), m_HP(100) , m_coins(BasicCoins)
 {}
 
 void Player::levelUp()
