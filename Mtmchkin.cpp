@@ -201,6 +201,7 @@ Mtmchkin::Mtmchkin(const std::string fileName):  m_numOfPlayers(0), m_rounds(0)
 
 void Mtmchkin::playRound()
 {
+    printRoundStartMessage(m_rounds + 1);
     int current_players = m_players.size();
 
     for(int i = current_players ; i > 0 ; --i)
@@ -269,6 +270,6 @@ bool Mtmchkin::isGameOver() const
 
 int Mtmchkin::getNumberOfRounds() const
 {
-    return m_rounds + 1;
+    return m_rounds;
 }
 
