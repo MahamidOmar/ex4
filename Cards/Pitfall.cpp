@@ -3,7 +3,7 @@
 //
 
 #include "Pitfall.h"
-#include "../Players/Rouge.h"
+#include "../Players/Rogue.h"
 #include <iostream>
 #include <memory>
 

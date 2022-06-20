@@ -58,8 +58,8 @@ std::unique_ptr<Player> getPlayerType(const std::string& player_class, const std
         return std::unique_ptr<Player>(new Fighter(name));
     if(player_class.compare("Wizard") == 0)
         return std::unique_ptr<Player>(new Wizard(name));
-    if(player_class.compare("Rouge") == 0)
-        return std::unique_ptr<Player>(new Rouge(name));
+    if(player_class.compare("Rogue") == 0)
+        return std::unique_ptr<Player>(new Rogue(name));
     return nullptr;
 }
 
@@ -81,7 +81,7 @@ bool checkPlayerInvalid(const std::string& name)
 }
 bool checkClassInvalid(const std::string& name)
 {
-    if(name.compare("Fighter") == 0 || name.compare("Rouge") == 0 || name.compare("Wizard") == 0)
+    if(name.compare("Fighter") == 0 || name.compare("Rogue") == 0 || name.compare("Wizard") == 0)
     {
         return true;
     }
