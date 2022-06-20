@@ -206,6 +206,7 @@ void Mtmchkin::playRound()
 
     for(int i = current_players ; i > 0 ; --i)
     {
+        printTurnStartMessage(m_players.front()->getName());
         m_cards.front()->applyEncounter(*m_players.front());
         if(m_players.front()->isWinner())
         {
@@ -215,7 +216,7 @@ void Mtmchkin::playRound()
         }else if(m_players.front()->isKnockedOut())
         {
             ////add to losers
-            m_losers.push_back(std::move(m_players.front()));
+            m_losers.push_front(std::move(m_players.front()));
             m_players.pop_front();
         }else
         {
