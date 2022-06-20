@@ -49,7 +49,10 @@ void Player::damage(int damage)
 
 void Player::damageForce()
 {
-    this->m_force--;
+    if(m_force > 0)
+    {
+        this->m_force--;
+    }
 }
 
 ////maybe add || m_level == 10
