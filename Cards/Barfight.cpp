@@ -3,7 +3,7 @@
 //
 
 #include "Barfight.h"
-#include "Players/Fighter.h"
+#include "../Players/Fighter.h"
 
 Barfight::Barfight(): Card("Barfight"){}
 bool Barfight::applyEncounter(Player& player) const
