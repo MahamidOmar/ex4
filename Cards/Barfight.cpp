@@ -10,7 +10,7 @@ bool Barfight::applyEncounter(Player& player) const
 {
     try
     {
-        Fighter& tmp = dynamic_cast<Fighter&>(player);
+        dynamic_cast<Fighter&>(player);
         printBarfightMessage(true);
         return true;
     }

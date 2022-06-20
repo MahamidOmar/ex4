@@ -12,7 +12,7 @@ bool Pitfall::applyEncounter(Player& player) const
 {
     try
     {
-        Rogue& tmp = dynamic_cast<Rogue&>(player);
+        dynamic_cast<Rogue&>(player);
         printPitfallMessage(true);
         return true;
     }
