@@ -10,5 +10,7 @@ bool Vampire::applyEncounter(Player& player) const
     if(!Battle::applyEncounter(player))
     {
         player.damageForce();
+        return false;
     }
+    return true;
 }

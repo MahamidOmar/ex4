@@ -30,6 +30,6 @@ void Battle::printInfo(std::ostream& os) const
     printCardDetails(os, m_name);
     printMonsterDetails(os, m_force, m_damage, m_loot, (m_name.compare("Dragon") == 0));
     printEndOfCardDetails(os);
-};
+}
 
 

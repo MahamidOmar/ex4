@@ -52,4 +52,5 @@ bool Merchant::applyEncounter(Player& player) const
         }
     }
     printMerchantSummary(std::cout, player.getName(), toBuy, coins);
+    return true;
 }

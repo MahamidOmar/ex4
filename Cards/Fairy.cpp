@@ -3,7 +3,7 @@
 //
 
 #include "Fairy.h"
-#include "Players/Wizard.h"
+#include "../Players/Wizard.h"
 
 Fairy::Fairy(): Card("Fairy"){}
 bool Fairy::applyEncounter(Player& player) const

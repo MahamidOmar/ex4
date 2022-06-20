@@ -69,15 +69,15 @@ bool checkPlayerInvalid(const std::string& name)
     {
         return false;
     }
-    for(int i = 0 ; i < name.length() ; ++i)
+    for(int i = 0 ; i < (int)name.length() ; ++i)
     {
         char current = name[i];
         if(!((current >= 'a' && current <= 'z') || (current >= 'A' && current <= 'Z')))
         {
             return false;
         }
-        return true;
     }
+    return true;
 }
 bool checkClassInvalid(const std::string& name)
 {
@@ -148,8 +148,8 @@ int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
             flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
         }
         players.push_back(std::unique_ptr<Player>(getPlayerType(player_class, player_name)));
-        return size;
     }
+    return size;
 }
 
 ////end of help functions
