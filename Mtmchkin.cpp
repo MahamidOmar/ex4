@@ -230,7 +230,7 @@ void Mtmchkin::playRound()
     if(isGameOver())
     {
         printGameEndMessage();
-        printLeaderBoard();
+//        printLeaderBoard();
     }
     ++m_rounds;
 }
@@ -255,13 +255,6 @@ void Mtmchkin::printLeaderBoard() const
 
 bool Mtmchkin::isGameOver() const
 {
-//    for(std::deque<std::unique_ptr<Player>>::const_iterator it = m_players.begin(); it != m_players.end(); ++it)
-//    {
-//        if(!(*it)->isKnockedOut())
-//        {
-//            return false;
-//        }
-//    }
     if(!m_players.empty())
     {
         return false;
