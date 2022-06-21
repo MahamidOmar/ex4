@@ -52,6 +52,7 @@ bool Merchant::applyEncounter(Player& player) const
             printMerchantInsufficientCoins(std::cout);
         }
     }
-    printMerchantSummary(std::cout, player.getName(), std::stoi(toBuy), coins);
+    int tmp = std::stoi(toBuy);
+    printMerchantSummary(std::cout, player.getName(), tmp, coins);
     return true;
 }
