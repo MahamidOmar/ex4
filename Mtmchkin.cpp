@@ -88,12 +88,6 @@ bool checkClassInvalid(const std::string& name)
     return false;
 }
 
-//void cutStrings(std::string& player, int toSlice ,std::string& player_name, std::string& player_class)
-//{
-//    player_name = player.substr(0, toSlice);
-//    player_class = player.substr(toSlice + 1);
-//}
-
 void readSize(int& size)
 {
     std::cin >> size;
@@ -108,22 +102,18 @@ void readSize(int& size)
 int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
 {
     int size;
-    printStartGameMessage();
     printEnterTeamSizeMessage();
     readSize(size);
     for(int i = 0 ; i < size ; i++)
     {
         printInsertPlayerMessage();
 
-//        std::string current_player;
-//        std::cin >> current_player;
-//        int toSlice = current_player.find(" ");
         std::string player_name;
         std::cin >> player_name;
 
         std::string player_class;
         std::cin >> player_class;
-//        cutStrings(current_player, toSlice, player_name, player_class);
+//
         bool flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
         while(!flag)
         {
@@ -132,18 +122,12 @@ int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
                 printInvalidName();
                 std::cin >> player_name;
                 std::cin >> player_class;
-//                std::cin >> current_player;
-//                toSlice = current_player.find(" ");
-//                cutStrings(current_player, toSlice, player_name, player_class);
             }
             else
             {
                 printInvalidClass();
                 std::cin >> player_name;
                 std::cin >> player_class;
-//                std::cin >> current_player;
-//                toSlice = current_player.find(" ");
-//                cutStrings(current_player, toSlice, player_name, player_class);
             }
             flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
         }
@@ -156,6 +140,7 @@ int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
 
 Mtmchkin::Mtmchkin(const std::string fileName):  m_numOfPlayers(0), m_rounds(0)
 {
+    printStartGameMessage();
     std::ifstream file(fileName);
     if(!file)
     {
