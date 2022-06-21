@@ -102,6 +102,7 @@ void readSize(int& size)
 int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
 {
     int size;
+    printStartGameMessage();
     printEnterTeamSizeMessage();
     readSize(size);
     for(int i = 0 ; i < size ; i++)
@@ -110,28 +111,21 @@ int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
 
         std::string player_name;
         std::cin >> player_name;
-//        std::getline(std::cin, player_name, ' ');
 
         std::string player_class;
         std::cin >> player_class;
-//        std::getline(std::cin, player_class);
-
         bool flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
         while(!flag)
         {
             if(!checkPlayerInvalid(player_name))
             {
                 printInvalidName();
-//                std::getline(std::cin, player_name, ' ');
-//                std::getline(std::cin, player_class);
                 std::cin >> player_name;
                 std::cin >> player_class;
             }
             else
             {
                 printInvalidClass();
-//                std::getline(std::cin, player_name, ' ');
-//                std::getline(std::cin, player_class);
                 std::cin >> player_name;
                 std::cin >> player_class;
             }
@@ -146,7 +140,6 @@ int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
 
 Mtmchkin::Mtmchkin(const std::string fileName):  m_numOfPlayers(0), m_rounds(0)
 {
-    printStartGameMessage();
     std::ifstream file(fileName);
     if(!file)
     {
@@ -169,26 +162,6 @@ Mtmchkin::Mtmchkin(const std::string fileName):  m_numOfPlayers(0), m_rounds(0)
     }
     m_numOfPlayers = fillPlayersDeque(this->m_players);
 }
-
-//std::deque<std::unique_ptr<Player>>::const_iterator Mtmchkin::getFirstPosition() const
-//{
-//    std::deque<std::unique_ptr<Player>>::const_iterator position = this->m_players.begin();
-//    for(int i = 1 ; i < m_toAddFirst ; ++i)
-//    {
-//        ++position;
-//    }
-//    return position;
-//}
-//
-//std::deque<std::unique_ptr<Player>>::const_iterator Mtmchkin::getLastPosition() const
-//{
-//    std::deque<std::unique_ptr<Player>>::const_iterator position = this->m_players.end();
-//    for(int i = 1 ; i <= m_toAddLast ; ++i)
-//    {
-//        --position;
-//    }
-//    return position;
-//}
 
 void Mtmchkin::playRound()
 {
