@@ -166,7 +166,6 @@ void readSize(int& size)
 int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
 {
     int size;
-    printStartGameMessage();
     printEnterTeamSizeMessage();
     readSize(size);
     for(int i = 0 ; i < size ; i++)
@@ -218,6 +217,7 @@ int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
 
 Mtmchkin::Mtmchkin(const std::string fileName):  m_numOfPlayers(0), m_rounds(0)
 {
+    printStartGameMessage();
     std::ifstream file(fileName);
     if(!file)
     {
