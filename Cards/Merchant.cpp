@@ -7,12 +7,13 @@
 Merchant::Merchant(): Card("Merchant") {}
 bool Merchant::applyEncounter(Player& player) const
 {
-    int toBuy;
+//    int toBuy;
+    std::string toBuy;
     bool flag = true;
     int coins = 0;
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getName(), player.getCoins());
     std::cin >> toBuy;
-    if(toBuy != 0 && toBuy != 1 && toBuy != 2)
+    if(toBuy.compare("0") != 0 && toBuy.compare("1") != 0 && toBuy.compare("2") != 0)
     {
         flag = false;
     }
@@ -20,12 +21,12 @@ bool Merchant::applyEncounter(Player& player) const
     {
         printInvalidInput();
         std::cin >> toBuy;
-        if(toBuy == 0 || toBuy == 1 || toBuy == 2)
+        if(toBuy.compare("0") != 0 || toBuy.compare("1") != 0 || toBuy.compare("2") != 0)
         {
             flag = true;
         }
     }
-    if(toBuy == 1)
+    if(toBuy.compare("1") == 0)
     {
         if(player.getCoins() >= 5)
         {
@@ -38,7 +39,7 @@ bool Merchant::applyEncounter(Player& player) const
             printMerchantInsufficientCoins(std::cout);
         }
     }
-    if(toBuy == 2)
+    if(toBuy.compare("2") == 0)
     {
         if(player.getCoins() >= 10)
         {
@@ -51,6 +52,6 @@ bool Merchant::applyEncounter(Player& player) const
             printMerchantInsufficientCoins(std::cout);
         }
     }
-    printMerchantSummary(std::cout, player.getName(), toBuy, coins);
+    printMerchantSummary(std::cout, player.getName(), std::stoi(toBuy), coins);
     return true;
 }
