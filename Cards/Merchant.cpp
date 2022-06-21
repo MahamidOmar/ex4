@@ -22,7 +22,7 @@ bool Merchant::applyEncounter(Player& player) const
     {
         printInvalidInput();
         std::getline(std::cin, toBuy, '\n');
-        if(toBuy == "0" || toBuy == "1" || toBuy == "2" || toBuy == " " || toBuy == "\n")
+        if(toBuy == "0" || toBuy == "1" || toBuy == "2")
         {
             break;
         }
