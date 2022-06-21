@@ -78,7 +78,7 @@ bool Merchant::applyEncounter(Player& player) const
             flag = true;
         }
     }
-    if(toBuy.compare("1") == 0)
+    if(toBuy == "1")
     {
         if(player.getCoins() >= 5)
         {
@@ -91,7 +91,7 @@ bool Merchant::applyEncounter(Player& player) const
             printMerchantInsufficientCoins(std::cout);
         }
         operation = 1;
-    } else if(toBuy.compare("2") == 0)
+    } else if(toBuy == "2")
     {
         if(player.getCoins() >= 10)
         {
