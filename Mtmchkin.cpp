@@ -90,13 +90,40 @@ bool checkClassInvalid(const std::string& name)
 
 void readSize(int& size)
 {
-    std::cin >> size;
-    while(size < 2 || size > 6)
+    std::string tmp_size;
+    bool flag = true;
+    while(flag)
     {
-        printInvalidTeamSize();
-        printEnterTeamSizeMessage();
-        std::cin >> size;
+        std::getline(std::cin, tmp_size);
+        try
+        {
+            size = std::stoi(tmp_size);
+            if(size < 2 || size > 6)
+            {
+                printInvalidTeamSize();
+                printEnterTeamSizeMessage();
+                continue;
+            }
+            else
+            {
+                flag = false;
+                break;
+            }
+        }catch (...)
+        {
+            printInvalidTeamSize();
+            printEnterTeamSizeMessage();
+            continue;
+        }
     }
+
+//    std::cin >> size;
+//    while(size < 2 || size > 6)
+//    {
+//        printInvalidTeamSize();
+//        printEnterTeamSizeMessage();
+//        std::cin >> size;
+//    }
 }
 
 int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
