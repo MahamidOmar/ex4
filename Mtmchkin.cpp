@@ -110,7 +110,7 @@ int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
 
         std::string player_name;
 //        std::cin >> player_name;
-        std::getline(std::cin, player_name);
+        std::getline(std::cin, player_name, ' ');
 
         std::string player_class;
 //        std::cin >> player_class;
@@ -122,7 +122,7 @@ int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
             if(!checkPlayerInvalid(player_name))
             {
                 printInvalidName();
-                std::getline(std::cin, player_name);
+                std::getline(std::cin, player_name, ' ');
                 std::getline(std::cin, player_class);
 //                std::cin >> player_name;
 //                std::cin >> player_class;
@@ -130,7 +130,7 @@ int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
             else
             {
                 printInvalidClass();
-                std::getline(std::cin, player_name);
+                std::getline(std::cin, player_name, ' ');
                 std::getline(std::cin, player_class);
 //                std::cin >> player_name;
 //                std::cin >> player_class;
