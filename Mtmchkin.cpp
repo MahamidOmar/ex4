@@ -126,6 +126,43 @@ void readSize(int& size)
 //    }
 }
 
+//int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
+//{
+//    int size;
+//    printStartGameMessage();
+//    printEnterTeamSizeMessage();
+//    readSize(size);
+//    for(int i = 0 ; i < size ; i++)
+//    {
+//        printInsertPlayerMessage();
+//
+//        std::string player_name;
+//        std::cin >> player_name;
+//
+//        std::string player_class;
+//        std::cin >> player_class;
+//        bool flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
+//        while(!flag)
+//        {
+//            if(!checkPlayerInvalid(player_name))
+//            {
+//                printInvalidName();
+//                std::cin >> player_name;
+//                std::cin >> player_class;
+//            }
+//            else
+//            {
+//                printInvalidClass();
+//                std::cin >> player_name;
+//                std::cin >> player_class;
+//            }
+//            flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
+//        }
+//        players.push_back(std::unique_ptr<Player>(getPlayerType(player_class, player_name)));
+//    }
+//    return size;
+//}
+
 int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
 {
     int size;
@@ -136,25 +173,38 @@ int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
     {
         printInsertPlayerMessage();
 
+        std::string player;
+        std::getline(std::cin, player);
+
         std::string player_name;
-        std::cin >> player_name;
+        player_name = player.substr(0, player.find(" "));
+//        std::cin >> player_name;
 
         std::string player_class;
-        std::cin >> player_class;
+        player_class = player.substr(player.find(" ") + 1, player.size());
+//        std::cin >> player_class;
         bool flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
         while(!flag)
         {
             if(!checkPlayerInvalid(player_name))
             {
                 printInvalidName();
-                std::cin >> player_name;
-                std::cin >> player_class;
+                std::getline(std::cin, player);
+                player_name = player.substr(0, player.find(" "));
+                player_class = player.substr(player.find(" ") + 1, player.size());
+
+//                std::cin >> player_name;
+//                std::cin >> player_class;
             }
             else
             {
                 printInvalidClass();
-                std::cin >> player_name;
-                std::cin >> player_class;
+                std::getline(std::cin, player);
+                player_name = player.substr(0, player.find(" "));
+                player_class = player.substr(player.find(" ") + 1, player.size());
+
+//                std::cin >> player_name;
+//                std::cin >> player_class;
             }
             flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
         }
@@ -162,6 +212,7 @@ int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
     }
     return size;
 }
+
 
 ////end of help functions
 
