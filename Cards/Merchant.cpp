@@ -75,7 +75,8 @@ bool Merchant::applyEncounter(Player& player) const
         std::getline(std::cin, toBuy);
         if(toBuy == "0" || toBuy == "1" || toBuy == "2")
         {
-            flag = true;
+//            flag = true;
+            break;
         }
     }
     if(toBuy == "1")
