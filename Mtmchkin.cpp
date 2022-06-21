@@ -109,12 +109,12 @@ int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
         printInsertPlayerMessage();
 
         std::string player_name;
-//        std::cin >> player_name;
-        std::getline(std::cin, player_name, ' ');
+        std::cin >> player_name;
+//        std::getline(std::cin, player_name, ' ');
 
         std::string player_class;
-//        std::cin >> player_class;
-        std::getline(std::cin, player_class);
+        std::cin >> player_class;
+//        std::getline(std::cin, player_class);
 
         bool flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
         while(!flag)
@@ -122,18 +122,18 @@ int fillPlayersDeque(std::deque<std::unique_ptr<Player>>& players)
             if(!checkPlayerInvalid(player_name))
             {
                 printInvalidName();
-                std::getline(std::cin, player_name, ' ');
-                std::getline(std::cin, player_class);
-//                std::cin >> player_name;
-//                std::cin >> player_class;
+//                std::getline(std::cin, player_name, ' ');
+//                std::getline(std::cin, player_class);
+                std::cin >> player_name;
+                std::cin >> player_class;
             }
             else
             {
                 printInvalidClass();
-                std::getline(std::cin, player_name, ' ');
-                std::getline(std::cin, player_class);
-//                std::cin >> player_name;
-//                std::cin >> player_class;
+//                std::getline(std::cin, player_name, ' ');
+//                std::getline(std::cin, player_class);
+                std::cin >> player_name;
+                std::cin >> player_class;
             }
             flag = checkPlayerInvalid(player_name) && checkClassInvalid(player_class);
         }
