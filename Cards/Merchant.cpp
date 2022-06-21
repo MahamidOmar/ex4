@@ -64,7 +64,7 @@ bool Merchant::applyEncounter(Player& player) const
     bool flag = true;
     int coins = 0;
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getName(), player.getCoins());
-    std::getline(std::cin, toBuy, '\n');
+    std::getline(std::cin, toBuy);
     if(toBuy != "0" && toBuy != "1" && toBuy != "2")
     {
         flag = false;
@@ -72,7 +72,7 @@ bool Merchant::applyEncounter(Player& player) const
     while(!flag)
     {
         printInvalidInput();
-        std::getline(std::cin, toBuy, '\n');
+        std::getline(std::cin, toBuy);
         if(toBuy == "0" || toBuy == "1" || toBuy == "2")
         {
             flag = true;
