@@ -7,7 +7,7 @@
 int main()
 {
     try{
-        Mtmchkin game("Deck.txt");
+        Mtmchkin game("deck.txt");
         while(!game.isGameOver())
         {
             game.playRound();
